@@ -1,13 +1,10 @@
 package org.workflow.definition;
 
 import java.util.HashMap;
-import java.util.Map;
 
 import lombok.Data;
 
 @Data
-public class Properties {
+public class Properties extends HashMap<String,Object> {
 
-	private Map<String,Object> properties = new HashMap<>();
-	
 }

@@ -8,6 +8,7 @@ import org.workflow.definition.WorkflowDefinition;
 import org.workflow.definition.behaviour.NodeBehaviour;
 import org.workflow.definition.behaviour.NodeBehaviourFactory;
 import org.workflow.executor.WorkFlowInstance.Status;
+import org.workflow.executor.WorkFlowInstance.Variables;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -34,13 +35,14 @@ public class WorkFlowExecutor {
 		
 	}
 	
-	public WorkFlowInstance startWorkFlow(WorkflowDefinition definition ) {
+	public WorkFlowInstance startWorkFlow(WorkflowDefinition definition, Variables varaibles ) {
 		
 		log.debug("starting instance");
 		WorkFlowInstance instance = new WorkFlowInstance();
 		instance.setName(definition.getName());
 		instance.setWorkFlowDefinitionId(definition.getId());
 		instance.setStatus(Status.IN_PROGRESS);
+		instance.getData().putAll(varaibles);
 		
 		execute(instance, definition,definition.getStartNodeId() );
 		
@@ -52,12 +54,14 @@ public class WorkFlowExecutor {
 		return instance;
 	}
 	
-	public WorkFlowInstance notify( WorkflowDefinition definition, WorkFlowInstance instance ) {
+	public WorkFlowInstance notify( WorkflowDefinition definition, WorkFlowInstance instance,
+				Variables variables ) {
 		// Add some logic for validation
 		log.debug("Notify instance : {} ", instance);
 		
 		String nodeId = instance.getCurrentNodeId();
 		FlowNode node = definition.getNodeById(nodeId);
+		instance.getData().putAll(variables);
 		NodeBehaviour behaviour = behaviourFactory.getBehaviourByType(node);
 		behaviour.notify(instance);
 		Transition next = behaviour.getTrasition();
