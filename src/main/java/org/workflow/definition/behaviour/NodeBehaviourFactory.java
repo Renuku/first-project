@@ -2,6 +2,7 @@ package org.workflow.definition.behaviour;
 
 import org.springframework.stereotype.Component;
 import org.workflow.definition.FlowNode;
+import org.workflow.definition.ServiceTaskNode;
 
 @Component
 public class NodeBehaviourFactory {
@@ -13,7 +14,9 @@ public class NodeBehaviourFactory {
 			return new EndNodeBehaviour(node);
 		} else if("userTask".equals(node.getType()) ) {
 			return new UserTaskBehaviour(node);
-		} else {
+		} else if( node instanceof ServiceTaskNode ) {
+			return new JavaNodeBehaviour((ServiceTaskNode) node);
+		}{
 			throw new RuntimeException("Type not supported");
 		}
 		

@@ -25,7 +25,7 @@ public class WorkFlowExecutor {
 	private void execute( WorkFlowInstance instance, WorkflowDefinition definition, String nodeId ) {
 		
 		while( nodeId != null ) {
-			log.debug("Current Node Id {} ", nodeId);
+			//log.debug("Current Node Id {} ", nodeId);
 			FlowNode node = definition.getNodeById(nodeId);
 			NodeBehaviour behaviour = behaviourFactory.getBehaviourByType(node);
 			behaviour.execute(instance);
@@ -57,7 +57,7 @@ public class WorkFlowExecutor {
 	public WorkFlowInstance notify( WorkflowDefinition definition, WorkFlowInstance instance,
 				Variables variables ) {
 		// Add some logic for validation
-		log.debug("Notify instance : {} ", instance);
+		//log.debug("Notify instance : {} ", instance);
 		
 		String nodeId = instance.getCurrentNodeId();
 		FlowNode node = definition.getNodeById(nodeId);

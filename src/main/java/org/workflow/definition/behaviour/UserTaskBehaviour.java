@@ -15,7 +15,7 @@ public class UserTaskBehaviour extends NodeBehaviour {
 	
 	@Override
 	protected void process(WorkFlowInstance instance) {
-		log.debug(" User task started  and waiting for response");
+		//log.debug(" User task started  and waiting for response");
 	}
 
 	@Override
@@ -34,7 +34,7 @@ public class UserTaskBehaviour extends NodeBehaviour {
 
 	@Override
 	public void notify(WorkFlowInstance instance) {
-		log.info(" Notified" );
+		//log.info(" Notified" );
 		super.notify(instance);
 		markCompleted(instance);
 	}

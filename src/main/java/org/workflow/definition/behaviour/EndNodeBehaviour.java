@@ -17,7 +17,7 @@ public class EndNodeBehaviour extends NodeBehaviour {
 	@Override
 	protected void process(WorkFlowInstance instance) {
 		instance.setStatus(Status.COMPLETED);
-		log.info(" End Node Executed");
+		//log.info(" End Node Executed");
 		markCompleted(instance);
 	}
 

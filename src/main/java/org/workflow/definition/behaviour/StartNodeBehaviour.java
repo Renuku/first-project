@@ -16,7 +16,7 @@ public class StartNodeBehaviour extends NodeBehaviour {
 
 	@Override
 	public void process(WorkFlowInstance instance) {
-		log.info(" Start Node Executed");
+		//log.info(" Start Node Executed");
 		markCompleted(instance);
 	}
 	
